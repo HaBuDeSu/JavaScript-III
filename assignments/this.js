@@ -9,35 +9,42 @@
 * write out a code example of each explanation above
 */
 
-// Principle 1
+//Principle 1
 
-// code example for Window Binding
+//code example for Window Binding
 
 console.log(this);
 
-// Principle 2
+//Principle 2
 
-// code example for Implicit Binding
+//code example for Implicit Binding
 const person = {
   name: "Ken",
-  intro: function(name) {
-    console.log(`Hi, my name is ${this.name}`);
+  intro: function () {
+    console.log(`Hi, my name is ${this.name}.`);
   }
 }
 
 person.intro('Ken')
 
-// Principle 3
+//Principle 3
 
-// code example for New Binding
+//code example for New Binding
 function Person(name) {
-  this.name = name;
+  this.name = name,
+  this.intro = function () {
+    console.log(`Hi, my name is ${this.name}.`);
+  }
 }
 
-const Peter = new Person("Peter");
+const peter = new Person("Peter");
 
-console.log(Peter.name)
+peter.intro();
 
 // Principle 4
 
 // code example for Explicit Binding
+
+const george = new Person("George");
+george.intro();
+george.intro.call(peter);
