@@ -147,11 +147,11 @@ Humanoid.prototype.greet = function () {
 
   Hero.prototype = Object.create(Humanoid.prototype);
 
-  Hero.prototype.punch = function () {
-    sanji.healthPoints = sanji.healthPoints - 5;
-    console.log(`${sanji.name} took 5 damage.`);
-    if (sanji.healthPoints <= 0) {
-      sanji.destroy();
+  Hero.prototype.punch = function (target) {
+    target.healthPoints = target.healthPoints - 5;
+    console.log(`${target.name} took 5 damage.`);
+    if (target.healthPoints <= 0) {
+      console.log(target.destroy());
     }
   }
 
@@ -161,13 +161,13 @@ Humanoid.prototype.greet = function () {
 
   Villain.prototype = Object.create(Humanoid.prototype);
 
-  Villain.prototype.kick = function () {
-    luffy.healthPoints = luffy.healthPoints - 35;
-    console.log(`${luffy.name} took 5 damage.`);
-    if (luffy.healthPoints <= 0) {
-      luffy.destroy();
+  Villain.prototype.kick = function (target) {
+    target.healthPoints = target.healthPoints - 35;
+    console.log(`${target.name} took 35 damage.`);
+    if (target.healthPoints <= 0) {
+      console.log(target.destroy());
+    }
   }
-}
 
   const luffy = new Hero ({
     createdAt: new Date(),
@@ -196,5 +196,5 @@ Humanoid.prototype.greet = function () {
     language: 'Japanese',
   })
 
-  luffy.punch();
-  sanji.kick();
+  luffy.punch(sanji);
+  sanji.kick(luffy);
